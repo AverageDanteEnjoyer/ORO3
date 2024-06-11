@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -20,5 +21,12 @@ public class Room {
     @Getter
     @OneToMany(mappedBy = "room")
     private Set<Presentation> presentations;
+
+    public void addPresentation(Presentation presentation) {
+        if (presentations == null) {
+            presentations = new HashSet<>();
+        }
+        presentations.add(presentation);
+    }
 }
 

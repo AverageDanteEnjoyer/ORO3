@@ -17,11 +17,17 @@ public class Presentation {
     @Getter
     private String topic;
 
-    @Setter
     @Getter
     @ManyToOne
     @JoinColumn(name = "room_id")
     private Room room;
+
+    public void setRoom(Room room) {
+        this.room = room;
+        if (room != null) {
+            room.addPresentation(this);
+        }
+    }
 
     @Setter
     @Getter
